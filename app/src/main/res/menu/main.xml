@@ -9,4 +9,11 @@
 
 
         />
+    <item
+        android:id="@+id/my_favorite"
+        android:title="@string/favorites"
+        app:showAsAction="never"
+
+
+        />
 </menu>

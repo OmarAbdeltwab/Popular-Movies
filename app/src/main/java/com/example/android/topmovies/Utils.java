@@ -1,5 +1,9 @@
 package com.example.android.topmovies;
 
+import android.database.Cursor;
+
+import com.example.android.topmovies.data.MovieContract;
+
 import java.net.URL;
 
 /**
@@ -28,13 +32,13 @@ public  class Utils {
                             VOTE ="vote_average",
                             POSTER_BATH="poster_path"   ,
                             RELEASE_DATE ="release_date",
-                            OVERVIEW="overview";
-    public enum SortMovies{POPULAR,TOP_RATED};
+                            OVERVIEW="overview",ID="id";
+    public enum SortMovies{POPULAR,TOP_RATED,FAV};
 
 
     private final static String  MOVIES_DB_BASE="http://api.themoviedb.org/3/movie/",
                          POPULAR_BASE= "popular",
-                         API_KEY="?api_key=",/*API Key Removed*/
+                         API_KEY="?api_key=b076ba9043bfdf02acc617c4059c7e7b",/*API Key Removed*/
                          TOPRATED_BASE = "top_rated" ;//, API_QUERY="";
 
 
@@ -63,7 +67,10 @@ public  class Utils {
                         TempMovie.getString( POSTER_BATH ),
                         TempMovie.getString( RELEASE_DATE ),
                         TempMovie.getString( OVERVIEW ),
-                        TempMovie.getDouble( VOTE )));
+                        TempMovie.getDouble( VOTE ),
+                        TempMovie.getLong(  ID)
+
+                ));
 
 
 
@@ -78,6 +85,24 @@ public  class Utils {
         return AllMovies;
     }
 
+public  static void Load_Favorites (Cursor Favorites,ArrayList<Movie> FavoritMoviess){
+        if (Favorites!=null && Favorites.moveToFirst() ) {
+        FavoritMoviess.clear();
+
+        for(Favorites.moveToFirst(); !Favorites.isAfterLast(); Favorites.moveToNext()) {
+
+            FavoritMoviess.add( new Movie   (
+                    Favorites.getString( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.title_column ) )
+                    , Favorites.getString( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.poster_path_column ) )
+                    , Favorites.getString( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.release_date_column ))
+                    , Favorites.getString( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.overview_column ))
+                    , Favorites.getDouble( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.vote_average_column ))
+                    , Favorites.getLong  ( Favorites.getColumnIndex( MovieContract.FavoritMovieEntery.Movie_id_column ) )
+            ));
+
+        }
+    }
+}
     /**
      * This take jason data and set the rest of the Movies
      *
@@ -105,7 +130,7 @@ public  class Utils {
                                             TempMovie.getString( POSTER_BATH ),
                                             TempMovie.getString( RELEASE_DATE ),
                                             TempMovie.getString( OVERVIEW ),
-                                            TempMovie.getInt( VOTE )));
+                                            TempMovie.getInt( VOTE ),TempMovie.getLong( ID )));
               // AllMoviesRVA.notifyDataSetChanged();
 
 
@@ -121,16 +146,26 @@ public  class Utils {
 
       //  return AllMovies;
     }
+    public static InputStream getResponseStream (String Url) throws IOException
+
+    { InputStream ret=null;
+        try {
+            ret = new URL(Url).openConnection().getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+return ret;
+    }
 
     /**
-     * This method returns the entire result from the HTTP response as String.
-     *
-     *
-     * @param  sortby Set Sort method TopRated/Popular
-     * @return The contents of the HTTP response as asingle String .
-     * @throws IOException Related to network and stream reading
-     */
-    public static String getMoviesResponse ( SortMovies sortby) throws IOException {
+             * This method returns the entire result from the HTTP response as String.
+             *
+             *
+             * @param  sortby Set Sort method TopRated/Popular
+             * @return The contents of the HTTP response as asingle String .
+             * @throws IOException Related to network and stream reading
+             */
+    public static String getMoviesResponse ( SortMovies sortby ) throws IOException {
         StringBuilder builder = new StringBuilder(  );
         builder.append(MOVIES_DB_BASE);
         switch (sortby)
@@ -138,12 +173,19 @@ public  class Utils {
             case POPULAR:
 
                 builder.append(POPULAR_BASE);
+                builder.append( API_KEY );
                 break;
             case TOP_RATED:
                 builder.append(TOPRATED_BASE);
+                builder.append( API_KEY );
                 break;
+            case FAV:
+              return null;
+
+                default:break;
         }
-        builder.append( API_KEY );
+
+
 
 
         String CompleteUrl = builder.toString();

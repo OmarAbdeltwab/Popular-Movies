@@ -13,15 +13,15 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
- * Created by maom3 on 21-Mar-18.
+ * Created by Omar Mohamed on 21-Mar-18.
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
-    ArrayList<Movie> MoviesArrayList;
-    final private MovieItemClickListner movieItemClickListner;
-     public MovieAdapter(ArrayList<Movie> moviesArrayLis, MovieItemClickListner movieItemClickListner)
+   public ArrayList<Movie> MoviesArrayList;
+    final private MovieItemClickListener movieItemClickListener;
+     public MovieAdapter(ArrayList<Movie> moviesArrayLis, MovieItemClickListener movieItemClickListener)
      {               MoviesArrayList=moviesArrayLis;
-                     this.movieItemClickListner = movieItemClickListner;
+                     this.movieItemClickListener = movieItemClickListener;
 
      }
     @Override
@@ -48,20 +48,20 @@ holder.bind( position );
         return MoviesArrayList.size();
     }
 
-    public interface MovieItemClickListner{
+    public interface MovieItemClickListener {
          void OnMovieClick(int Position);
 
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView  Tiltle;
+        TextView Title;
         ImageView IV_Poster;
         public MovieViewHolder(View itemView) {
             super( itemView );
             itemView.setOnClickListener( this );
 
             IV_Poster=itemView.findViewById( R.id.iv_Posetr );
-            Tiltle=itemView.findViewById( R.id.tv_title);
+            Title =itemView.findViewById( R.id.tv_title);
 
         }
 
@@ -97,13 +97,13 @@ holder.bind( position );
 
             //Set Title Below the Poster
 
-            Tiltle.setText(MoviesArrayList.get( Position ).getTitle());
+            Title.setText(MoviesArrayList.get( Position ).getTitle());
 
         }
 
         @Override
         public void onClick(View v) {
-            movieItemClickListner.OnMovieClick(getAdapterPosition());
+            movieItemClickListener.OnMovieClick(getAdapterPosition());
 
         }
     }

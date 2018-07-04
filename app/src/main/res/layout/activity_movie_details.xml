@@ -6,43 +6,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000"
+    android:background="@color/BGColor"
     tools:context="com.example.android.topmovies.MovieDetailsActivity"
     android:padding="12dp"
 
 
     >
-    <TextView
-        android:id="@+id/tv_MovieNameLbl"
+
+    <Switch
+        android:id="@+id/favSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:textColor="@android:color/background_light"
-        android:text="@string/title"
-        android:textSize="22sp" />
-    <TextView
-    android:id="@+id/tv_MovieName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:textSize="22sp"
+        android:textColor="#fff"
+        android:onClick="OnFavoriteClick"
+        android:text="add to favorite" />
 
-        android:layout_toEndOf="@id/tv_MovieNameLbl"
-    android:textColor="@android:color/background_light"
-
-
-    android:textSize="22sp" />
     <ScrollView
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        android:layout_below="@id/tv_MovieName"
+        android:id="@+id/sv_all_info"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/favSwitch"
     >
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
+        <TextView
+            android:id="@+id/tv_MovieNameLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+android:layout_alignParentTop="true"
 
+            android:textColor="@android:color/background_light"
+            android:text="@string/title"
+            android:textSize="22sp" />
+        <TextView
+            android:id="@+id/tv_MovieName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+android:layout_alignParentTop="true"
+            android:layout_toEndOf="@id/tv_MovieNameLbl"
+
+            android:textColor="#fff"
+            android:textSize="22sp" />
 
 
         <ImageView
@@ -50,11 +65,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-
+android:layout_below="@id/tv_MovieName"
             android:contentDescription="@string/image_Description"
             android:adjustViewBounds="true"
-            app:srcCompat="@android:color/background_dark"
+            app:srcCompat="@color/BGColor"
             />
 
         <TextView
@@ -129,12 +143,13 @@
             android:layout_height="wrap_content"
 
 
-            android:layout_below="@id/tv_OverView"
-
-
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_OverView"
+            android:layout_marginTop="19dp"
             android:text="@string/release_date"
             android:textColor="@android:color/background_light"
             android:textSize="22sp" />
+
 
         <TextView
 
@@ -143,14 +158,65 @@
             android:layout_height="wrap_content"
 
 
+            android:layout_alignBaseline="@+id/tv_Date_LBL"
+            android:layout_alignBottom="@+id/tv_Date_LBL"
 
             android:layout_toEndOf="@+id/tv_Date_LBL"
-            android:layout_below="@id/tv_OverView"
             android:textColor="@android:color/background_light"
             android:textSize="22sp" />
 
+        <TextView
+            android:id="@+id/Trailers_LBL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+           android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tv_Date"
+            android:layout_marginTop="10dp"
+            android:text="Trailers"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/RV_Trailers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Trailers_LBL"
+            android:layout_below="@+id/Trailers_LBL"
+            android:layout_marginTop="8dp"
+            android:background="@color/BGColor">
+
+        </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/Reviews_Lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/RV_Trailers"
+            android:layout_marginTop="10dp"
+            android:text="Reviews"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/RV_Reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/Trailers_LBL"
+            android:layout_below="@+id/Reviews_Lbl"
+            android:layout_marginTop="8dp"
+            android:background="@color/BGColor">
+
+        </android.support.v7.widget.RecyclerView>
+
 
     </RelativeLayout>
 
-</ScrollView>
-    </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
