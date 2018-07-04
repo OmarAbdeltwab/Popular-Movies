@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context="com.example.android.topmovies.MovieDetailsActivity"
+    android:padding="12dp"
+
+
+    >
+    <TextView
+        android:id="@+id/tv_MovieNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textColor="@android:color/background_light"
+        android:text="@string/title"
+        android:textSize="22sp" />
+    <TextView
+    android:id="@+id/tv_MovieName"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+
+        android:layout_toEndOf="@id/tv_MovieNameLbl"
+    android:textColor="@android:color/background_light"
+
+
+    android:textSize="22sp" />
+    <ScrollView
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_below="@id/tv_MovieName"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+
+        <ImageView
+            android:id="@+id/iv_poster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+            android:contentDescription="@string/image_Description"
+            android:adjustViewBounds="true"
+            app:srcCompat="@android:color/background_dark"
+            />
+
+        <TextView
+            android:id="@+id/tv_vote_Lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignBottom="@+id/rb_Rating"
+            android:layout_alignStart="@+id/iv_poster"
+            android:layout_marginBottom="13dp"
+            android:text="@string/vote"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+
+        <RatingBar
+            android:id="@+id/rb_Rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_poster"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+
+            android:clickable="false"
+            android:focusableInTouchMode="false" />
+
+        <TextView
+
+            android:id="@+id/tv_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignBaseline="@+id/tv_vote_Lbl"
+            android:layout_alignBottom="@+id/tv_vote_Lbl"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/rb_Rating"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+
+
+        <TextView
+            android:id="@+id/tv_OverViewLBl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_alignStart="@+id/tv_vote_Lbl"
+            android:layout_below="@+id/tv_vote_Lbl"
+            android:layout_marginTop="19dp"
+            android:text="@string/overview"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+
+        <TextView
+
+            android:id="@+id/tv_OverView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/tv_OverViewLBl"
+            android:layout_marginStart="11dp"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_Date_LBL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_below="@id/tv_OverView"
+
+
+            android:text="@string/release_date"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+
+        <TextView
+
+            android:id="@+id/tv_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+
+            android:layout_toEndOf="@+id/tv_Date_LBL"
+            android:layout_below="@id/tv_OverView"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
+    </RelativeLayout>
