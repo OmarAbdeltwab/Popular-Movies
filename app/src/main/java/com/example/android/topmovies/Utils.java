@@ -38,7 +38,7 @@ public  class Utils {
 
     private final static String  MOVIES_DB_BASE="http://api.themoviedb.org/3/movie/",
                          POPULAR_BASE= "popular",
-                         API_KEY="?api_key=b076ba9043bfdf02acc617c4059c7e7b",/*API Key Removed*/
+                         API_KEY="?api_key=",/*API Key Removed*/
                          TOPRATED_BASE = "top_rated" ;//, API_QUERY="";
 
 
